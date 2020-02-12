@@ -153,3 +153,53 @@ Private Function comprobarErrores(entrada As String) As String
   Return resultado
 End
 
+Private Function compruebaFloat(entrada As String) As String
+  
+  Dim resultado As Boolean = True
+  Dim estadoMaquina As Byte = 4 ' 0 primera parte entera del float, 1 el punto, 2 la parte decimal, 4 sin empezar todavía
+  contador As Integer = 0
+  primeraLetra As String
+  
+  restoPorMirar = entrada  
+   
+  While (contador < Len(entrada) And resultado)
+    primeraLetra = Left(restoPorMirar, 1)
+    If (Not compruebaLetra(primeraLetra, estadoMaquina)) Then
+      resultado = False
+    Endif
+    restoPorMirar = Right(restoPorMirar, Len(restoPorMirar - 1))
+    
+    
+    contador = contador + 1
+  Wend
+  Return resultado
+End
+
+Private Function compruebaLetra(primeraLetra As Char, estadoMaquina As Byte) As Boolean
+  Dim resultado As Boolean = True
+  Dim letracodigo As Byte
+  
+  letracodigo = Asc(primeraLetra, 1)
+  
+  If (letracodigo) < 48 Or letracodigo > 57) And letracodigo <> 46 Then
+    resultado = False
+  Else
+    Select Case estadoMaquina
+      Case 0
+        
+      Case 1
+        
+      Case 2
+        
+      Case 4
+        If (letracodigo) <= 48 Or letracodigo >= 57) Then
+          estadoMaquina
+        Else
+          
+        Endif
+    End Select
+    
+  Endif
+  Return resultado
+End
+
